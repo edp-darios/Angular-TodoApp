@@ -6,6 +6,7 @@
     margin-bottom: 40px;
     margin-right: 40px;
     font-size: 60px;
+    cursor: pointer;
 }
 
 .color_inside {
@@ -16,4 +17,20 @@
 .color_outside {
     color: rgb(255, 100, 0);
     z-index: 2;
+}
+
+button {
+    float: right;
+}
+
+.mat-dialog-actions {
+    display: block;
+}
+
+.mat-dialog-content {
+    overflow: unset;
+}
+
+input {
+    width: 210px !important;
 }

@@ -5,6 +5,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 @Component({
   selector: 'TodoDialog',
   templateUrl: 'dialog-create-todo.html',
+  styleUrls: ['./createTodo.component.css']
 })
 export class TodoDialog {
 
@@ -59,7 +60,7 @@ export class CreateTodoComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(TodoDialog, {
-      width: '250px',
+      width: '230px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
