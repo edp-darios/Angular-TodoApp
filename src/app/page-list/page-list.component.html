@@ -1,6 +1,7 @@
 <div class="conatiner">
 
     <div class="todoCon">
+        <br>
         <h4><b>To-Do </b><span>( {{ $todos.length + $todoimportant.length }} ) </span><span class="delete" (click)="delTodos()">delete</span></h4>
         <app-todo [toDo$]="Todo" (ping)="update($event)" *ngFor="let Todo of $todoimportant"></app-todo>
         <app-todo [toDo$]="Todo" (ping)="update($event)" *ngFor="let Todo of $todos"></app-todo>
@@ -13,6 +14,6 @@
         </div>
     </div>
 
-</div>
+    <app-createTodo (ping)="create($event)"></app-createTodo>
 
-<app-createTodo (ping)="create($event)"></app-createTodo>
+</div>

@@ -64,7 +64,11 @@ export class CreateTodoComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.data = result;
-      this.createTodo();
+      if(this.data.lable != null) {
+        this.createTodo()
+      } else {
+        alert("Titel has to contain text")
+      }
     }); 
   }
 
