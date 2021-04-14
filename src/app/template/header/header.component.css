@@ -1,0 +1,33 @@
+.mat-toolbar {
+    border-top: 4px solid orangered;
+    background-color: #354757;
+    color: white;
+    line-height: 0.9;
+    height: 100px;
+    font-size: 28px;
+    font-weight: bolder;
+    display: content;
+    max-width: 1030px;
+}
+b {
+    color: rgb(255, 115, 0);
+    font-weight: bolder;
+    font-size: 32px;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+.archiv {
+    width: 50%;
+}
+.todo {
+    width: 50%;
+}
+.todo-text {
+    float: right;
+}
+.archive_img {
+    height: 35px;
+    margin-bottom: 32px;
+}

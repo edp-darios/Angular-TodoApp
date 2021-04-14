@@ -1,0 +1,15 @@
+<div mat-dialog-content>
+    <mat-form-field class="form">
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]="data.lable">
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>Notiz</mat-label>
+        <input matInput [(ngModel)]="data.text">
+    </mat-form-field>
+    <div mat-dialog-actions>
+        <button mat-flat-button color="primary" [mat-dialog-close]="data">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</div>

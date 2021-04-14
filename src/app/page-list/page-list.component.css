@@ -1,0 +1,50 @@
+h4 {
+    color: white;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+span {
+    font-size: 10px;
+}
+
+.mat-form-field {
+    height: 30px;
+    margin: 0;
+}
+
+.mat-card {
+    margin: 10px 0;
+}
+
+.conatiner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 10px 20px 10px;
+    max-width: 1000px;
+}
+
+.createCon {
+    width: 100%;
+    margin: 0;
+}
+
+.todoCon {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 60px;
+}
+
+@media only screen and (min-width: 967px) {
+    .todoCon {
+        width: 49%;
+    }
+    .createCon {
+        width: 49%;
+    }
+}
+
+.delete {
+    float: right;
+}

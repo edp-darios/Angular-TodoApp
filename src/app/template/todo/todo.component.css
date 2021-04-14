@@ -1,0 +1,29 @@
+.done {
+    text-decoration: line-through;
+}
+.important {
+    border-left: rgb(255, 94, 0) 7px solid;
+}
+.mat-card {
+    margin: 10px 0;
+}
+.mat-icon {
+    float: right;
+    cursor: pointer;
+}
+img {
+    float: left;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.small_gab {
+    margin-left: 10px;
+}
+.w-100 {
+    width: 100%;
+    display: block;
+    overflow-wrap: break-word;
+}
+.lable {
+    overflow-wrap: break-word;
+}

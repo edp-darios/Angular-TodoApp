@@ -1,0 +1,12 @@
+h4 {
+    color: white;
+    font-weight: bolder;
+    cursor: pointer;
+}
+.delete {
+    float: right;
+}
+.conatiner{
+    margin: 0 10px;
+    max-width: 1010px;
+}
