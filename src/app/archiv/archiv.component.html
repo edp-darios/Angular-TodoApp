@@ -1,11 +1,11 @@
 <div class="conatiner">
+    <br>
     <div class="todoCon">
-      <div>
-        <h4><b>Archive </b><span>( {{ $todosdone.length }} ) </span><span class="delete" (click)="delDoneTodos()">delete</span></h4>
-      </div>
-      <div *ngIf="toDoDoneShow">
-        <app-todo [toDo$]="Todo" (ping)="update($event)" *ngFor="let Todo of $todosdone"></app-todo>
-      </div>
+        <div>
+            <h4><b>Archive </b><span>( {{ $todosdone.length }} ) </span><span class="delete" (click)="delDoneTodos()">delete</span></h4>
+        </div>
+        <div *ngIf="toDoDoneShow">
+            <app-todo [toDo$]="Todo" (ping)="update($event)" *ngFor="let Todo of $todosdone"></app-todo>
+        </div>
     </div>
-  </div>
-  
+</div>

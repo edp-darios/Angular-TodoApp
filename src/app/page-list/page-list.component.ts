@@ -105,7 +105,7 @@ export class PageListComponent implements OnInit {
   public create(todo: Todo): void {
    // if((<HTMLInputElement>document.getElementById("input")).value != "") {
     this.$todos.push(todo);
-    console.log(this.$todos); 
+    console.log("create wurde getriggert"); 
     this.setlocalStorage()
   //  } else {
    //   window.alert("Todo must have text!")

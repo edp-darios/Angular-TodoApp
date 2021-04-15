@@ -1,4 +1,5 @@
 import { TodoDialog } from './template/createTodo/createTodo.component';
+import { EditTodoDialog } from './template/todo/todo.component';
 import { CommonModule } from '@angular/common';  
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -52,9 +53,11 @@ import { CreateTodoComponent } from 'src/app/template/createTodo/createTodo.comp
       ArchivComponent,
       TodoDialog,
       CreateTodoComponent,
+      EditTodoDialog
    ],
    entryComponents: [
-      TodoDialog
+      TodoDialog,
+      EditTodoDialog
    ],
    imports: [
       CommonModule,

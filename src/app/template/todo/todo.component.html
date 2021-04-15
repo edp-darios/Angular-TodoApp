@@ -1,4 +1,4 @@
-<mat-card [class.important]="toDo$.important" (click)="showText=!showText">
+<mat-card [class.important]="toDo$.important" (click)="showText=!showText" ng-dbclick="editTodo()">
     <div [class.done]="toDo$.done">
         <img src="assets/img/check_box-24px.png" alt="checked" (click)="changeCheck()" *ngIf="toDo$.done">
         <img src="assets/img/check_box_outline_blank-24px.png" alt="not-checked" (click)="changeCheck()" *ngIf="!toDo$.done">
