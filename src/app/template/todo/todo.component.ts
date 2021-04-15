@@ -22,7 +22,6 @@ export class EditTodoDialog {
       
     }
 
-
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
