@@ -1,7 +1,12 @@
+import { Todo } from './../../interface/todo';
 import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core';
-import { Todo } from '../../interface/todo';
 import { EventPing } from './../../interface/eventping';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+export interface DialogData {
+  text: string;
+  lable: string;
+}
 
 @Component({
   selector: 'EditTodoDialog',
@@ -10,16 +15,10 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 })
 export class EditTodoDialog {
   
-  @Input() data: Todo;
-  
   constructor(
     public dialogRef: MatDialogRef<EditTodoDialog>,
-    @Inject(MAT_DIALOG_DATA) public todo: Todo) { }
- 
-      onNoClick(): void {
-        this.dialogRef.close();
-      }
-      
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+
     }
 
 @Component({
@@ -55,7 +54,6 @@ export class TodoComponent implements OnInit {
   }
 
   public changeImportant() {
-    this.toDo$.important = !this.toDo$.important;
     const eventObject: EventPing = {
       lable: 'important',
       object: this.toDo$
@@ -67,13 +65,33 @@ export class TodoComponent implements OnInit {
     console.log("works!")
     const dialogRef = this.dialog.open(EditTodoDialog, {
       width: '230px',
+      data: { lable: this.toDo$.lable, text: this.toDo$.text }
     });
     dialogRef.afterClosed().subscribe(result => {
-  
+      this.toDo$ = result
+      console.log(result.lable)
+      this.toDo$.lable = result.lable                                    
+      this.toDo$.text = result.text
+      this.toDo$.done = false;
+      this.toDo$.important = false;
+      const eventObject: EventPing = {
+        lable: 'edit',
+        object: this.toDo$
+      }
+      this.ping.emit(eventObject);
+
+        
+
     }); 
   }
+  deleteAfterEdit() {
+    const eventObject: EventPing = {
+      lable: 'delete',
+      object: this.toDo$
+    }
+    this.ping.emit(eventObject);
+  }
   
-
   ngOnInit(): void {}
   
 }

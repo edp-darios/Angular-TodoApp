@@ -34,3 +34,7 @@ button {
 input {
     width: 210px !important;
 }
+
+.mat-slide-toggle {
+    color: rgba(0, 0, 0, 0.67);
+}

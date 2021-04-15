@@ -15,6 +15,8 @@ export class PageListComponent implements OnInit {
   public $todosdone: Todo[];
   public $recenttodo: Todo[];
   public $todoimportant: Todo[];    
+
+  SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' }
   
   constructor() { 
     this.$todos = [];
@@ -61,13 +63,13 @@ export class PageListComponent implements OnInit {
         this.$todos.push(eventping.object);
       } else if (eventping.object.done && !eventping.object.important) {
         this.$todos.splice(this.$todos.indexOf(eventping.object), 1);
-        this.$todosdone.push(eventping.object);
-        this.$recenttodo.push(eventping.object);
+        this.$todosdone.unshift(eventping.object);
+        this.$recenttodo.unshift(eventping.object);
       } else {
         this.$todoimportant.splice(this.$todoimportant.indexOf(eventping.object), 1)
         eventping.object.important = false;
-        this.$todosdone.push(eventping.object);
-        this.$recenttodo.push(eventping.object);
+        this.$todosdone.unshift(eventping.object);
+        this.$recenttodo.unshift(eventping.object);
       }
       this.setlocalStorage();
     }
@@ -93,23 +95,34 @@ export class PageListComponent implements OnInit {
       console.log('important wurde getriggert')
       if (!eventping.object.important && !eventping.object.done) {
         this.$todoimportant.splice(this.$todoimportant.indexOf(eventping.object), 1);
-        this.$todos.push(eventping.object)
+        this.$todos.unshift(eventping.object)
       } else if (eventping.object.important && !eventping.object.done) {
         this.$todos.splice(this.$todos.indexOf(eventping.object), 1);
-        this.$todoimportant.push(eventping.object);  
+        this.$todoimportant.unshift(eventping.object);  
+      }
+      this.setlocalStorage();  
+    }
+
+    if ('edit' === eventping.lable) {
+      if (!eventping.object.important) {
+        console.log("noch zu bearbeiten");
+        
+      } else {
+
       }
       this.setlocalStorage();  
     }
   }
 
   public create(todo: Todo): void {
-   // if((<HTMLInputElement>document.getElementById("input")).value != "") {
-    this.$todos.push(todo);
-    console.log("create wurde getriggert"); 
-    this.setlocalStorage()
-  //  } else {
-   //   window.alert("Todo must have text!")
-  //  }
+   if(todo.important != true) {
+      this.$todos.push(todo);
+      console.log("create wurde getriggert"); 
+      this.setlocalStorage()
+    } else {
+      this.$todoimportant.push(todo);
+      console.log("create important wurde getriggert"); 
+    }
   }
  
   public delTodos() {

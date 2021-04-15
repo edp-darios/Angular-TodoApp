@@ -3,13 +3,16 @@
         <img src="assets/img/check_box-24px.png" alt="checked" (click)="changeCheck()" *ngIf="toDo$.done">
         <img src="assets/img/check_box_outline_blank-24px.png" alt="not-checked" (click)="changeCheck()" *ngIf="!toDo$.done">
         <span class="lable">{{ toDo$.lable }}</span>
-        <mat-icon (click)="deleteToDo()" class="small_gab">delete</mat-icon>
+        <mat-icon (click)="editTodo()">settings</mat-icon>
+        <!--  <mat-icon (click)="deleteToDo()" class="small_gab">delete</mat-icon>
         <mat-icon (click)="changeImportant()" *ngIf="!toDo$.done && !toDo$.important">error_outline</mat-icon>
-        <mat-icon (click)="changeImportant()" *ngIf="!toDo$.done && toDo$.important">error</mat-icon>
+        <mat-icon (click)="changeImportant()" *ngIf="!toDo$.done && toDo$.important">error</mat-icon> -->
     </div>
     <div *ngIf="showText" class="w-100">
         <br>
-        <p>Notes:</p>
-        <p>{{ toDo$.text }}</p>
+        <p>
+            <b>Notes:</b>
+            <br> {{ toDo$.text }}
+        </p>
     </div>
 </mat-card>

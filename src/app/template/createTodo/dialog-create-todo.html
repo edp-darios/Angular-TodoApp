@@ -6,8 +6,9 @@
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>Notiz</mat-label>
-        <input matInput [(ngModel)]="data.text">
+        <textarea matInput [(ngModel)]="data.text"></textarea>
     </mat-form-field>
+    <mat-slide-toggle [(ngModel)]="data.important" color="primary">Important</mat-slide-toggle>
     <div mat-dialog-actions class="addTodo">
         <button mat-flat-button color="primary" [mat-dialog-close]="data">
             <mat-icon>add</mat-icon>
