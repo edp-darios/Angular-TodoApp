@@ -1,0 +1,15 @@
+.hidden {
+    display: none;
+}
+
+.mat-dialog-content {
+    overflow: unset;
+}
+
+button {
+    float: right;
+}
+
+.mat-dialog-actions {
+    display: block;
+}

@@ -1,25 +1,8 @@
 import { Todo } from './../../interface/todo';
-import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { EventPing } from './../../interface/eventping';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-export interface DialogData {
-  text: string;
-  lable: string;
-}
-
-@Component({
-  selector: 'EditTodoDialog',
-  templateUrl: 'dialog-edit-todo.html',
-  styleUrls: ['./todo.component.css']
-})
-export class EditTodoDialog {
-  
-  constructor(
-    public dialogRef: MatDialogRef<EditTodoDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
-
-    }
+import { MatDialog } from '@angular/material/dialog';
+import { TodoDialog } from 'src/app/dialog/dialog-todo';
 
 @Component({
   selector: 'app-todo',
@@ -62,28 +45,28 @@ export class TodoComponent implements OnInit {
   }
 
   editTodo(): void {
-    console.log("works!")
-    const dialogRef = this.dialog.open(EditTodoDialog, {
+
+    const dialogRef = this.dialog.open(TodoDialog, {
       width: '230px',
-      data: { lable: this.toDo$.lable, text: this.toDo$.text }
+      data: { lable: this.toDo$.lable, text: this.toDo$.text, id: this.toDo$.id, important: this.toDo$.important }
     });
+
     dialogRef.afterClosed().subscribe(result => {
       this.toDo$ = result
-      console.log(result.lable)
+      this.toDo$.id = result.id
       this.toDo$.lable = result.lable                                    
       this.toDo$.text = result.text
+      this.toDo$.important = result.important;
       this.toDo$.done = false;
-      this.toDo$.important = false;
-      const eventObject: EventPing = {
-        lable: 'edit',
-        object: this.toDo$
-      }
-      this.ping.emit(eventObject);
-
-        
-
+        const eventObject: EventPing = {
+          lable: 'edit',
+          object: this.toDo$
+        }
+        this.ping.emit(eventObject);
     }); 
   }
+
+
   deleteAfterEdit() {
     const eventObject: EventPing = {
       lable: 'delete',

@@ -1,33 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input, Inject } from '@angular/core';
 import { Todo } from '../../interface/todo';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-@Component({
-  selector: 'TodoDialog',
-  templateUrl: 'dialog-create-todo.html',
-  styleUrls: ['./createTodo.component.css']
-})
-export class TodoDialog {
-  
-  @Input() data: Todo;
-  
-  constructor(
-    public dialogRef: MatDialogRef<TodoDialog>,
-    @Inject(MAT_DIALOG_DATA) public todo: Todo) {   
-      this.data = {
-        lable: undefined,
-        text: undefined,
-        important: false,
-        done: false,
-      }}
-      @Output() ping: EventEmitter<Todo> = new EventEmitter<Todo>();
-      
-      onNoClick(): void {
-        this.dialogRef.close();
-      }
-      
-      
-    }
+import { MatDialog } from '@angular/material/dialog';
+import { TodoDialog } from 'src/app/dialog/dialog-todo';
     
     @Component({
       selector: 'app-createTodo',
@@ -54,6 +28,7 @@ export class TodoDialog {
       openDialog(): void {
         const dialogRef = this.dialog.open(TodoDialog, {
           width: '230px',
+          data: { lable: null, text: null, id: null, important: null }
         });
         dialogRef.afterClosed().subscribe(result => {
           this.data = result;

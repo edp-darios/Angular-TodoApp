@@ -105,10 +105,19 @@ export class PageListComponent implements OnInit {
 
     if ('edit' === eventping.lable) {
       if (!eventping.object.important) {
-        console.log("noch zu bearbeiten");
-        
+        this.$todos.forEach((ToDo: Todo)=> {
+          if(eventping.object.id === ToDo.id) {
+            ToDo.lable = eventping.object.lable
+            ToDo.text = eventping.object.text
+          }
+        })
       } else {
-
+        this.$todoimportant.forEach((ToDo: Todo)=> {
+          if(ToDo.id === eventping.object.id) {
+            ToDo.lable = eventping.object.lable
+            ToDo.text = eventping.object.text
+          }
+        })
       }
       this.setlocalStorage();  
     }
@@ -116,10 +125,12 @@ export class PageListComponent implements OnInit {
 
   public create(todo: Todo): void {
    if(todo.important != true) {
+      todo.id = this.$todos.length;
       this.$todos.push(todo);
       console.log("create wurde getriggert"); 
       this.setlocalStorage()
     } else {
+      todo.id = this.$todos.length + 1;
       this.$todoimportant.push(todo);
       console.log("create important wurde getriggert"); 
     }

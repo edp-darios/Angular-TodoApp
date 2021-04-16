@@ -1,5 +1,6 @@
-<div mat-dialog-content class="height">
-    <h2>Create Todo</h2>
+<div mat-dialog-content>
+    <h2>Todo</h2>
+    <input [(ngModel)]="data.id" class="hidden">
     <mat-form-field class="form">
         <mat-label>Title</mat-label>
         <input matInput [(ngModel)]="data.lable">
