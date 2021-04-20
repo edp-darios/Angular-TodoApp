@@ -30,3 +30,7 @@ img {
 .lable {
     overflow-wrap: break-word;
 }
+
+.small_gab {
+    margin-left: 10px;
+}

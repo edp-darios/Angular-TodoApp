@@ -104,21 +104,30 @@ export class PageListComponent implements OnInit {
     }
 
     if ('edit' === eventping.lable) {
-      if (!eventping.object.important) {
         this.$todos.forEach((ToDo: Todo)=> {
           if(eventping.object.id === ToDo.id) {
             ToDo.lable = eventping.object.lable
             ToDo.text = eventping.object.text
+            ToDo.important = eventping.object.important
+            if (ToDo.important === true) {
+              console.log("doesnt want to do above")
+              this.$todos.splice(this.$todos.indexOf(eventping.object), 1);
+              this.$todoimportant.push(eventping.object)
+            }
           }
         })
-      } else {
+
         this.$todoimportant.forEach((ToDo: Todo)=> {
           if(ToDo.id === eventping.object.id) {
             ToDo.lable = eventping.object.lable
             ToDo.text = eventping.object.text
+            if (ToDo.important === false) {
+              this.$todoimportant.splice(this.$todoimportant.indexOf(eventping.object), 1);
+              this.$todos.push(eventping.object)
+            }
           }
         })
-      }
+      
       this.setlocalStorage();  
     }
   }
@@ -128,12 +137,12 @@ export class PageListComponent implements OnInit {
       todo.id = this.$todos.length;
       this.$todos.push(todo);
       console.log("create wurde getriggert"); 
-      this.setlocalStorage()
     } else {
       todo.id = this.$todos.length + 1;
       this.$todoimportant.push(todo);
       console.log("create important wurde getriggert"); 
     }
+    this.setlocalStorage()
   }
  
   public delTodos() {
