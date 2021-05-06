@@ -59,13 +59,13 @@ export class TodoComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       var eventlable = "";
       this.tempToDo = result;
-      if(this.toDo$.important == null && this.tempToDo.important == true) {
+      if((this.toDo$.important == null && this.tempToDo.important == true) ||(this.toDo$.important == false && this.tempToDo.important == true)) {
         eventlable = "editTodoChange";
       } else if (this.toDo$.important == true && this.tempToDo.important == false) {
         eventlable = "editImportantTodoChange";
       } else if (this.tempToDo.important == true) {
         eventlable = "editImportantTodo";
-      } else if (this.tempToDo.important == null) {
+      } else if (this.tempToDo.important == null || this.tempToDo.important == false) {
         eventlable = "editTodo";
       }
       this.toDo$ = result;
