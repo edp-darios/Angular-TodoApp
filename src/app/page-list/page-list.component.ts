@@ -15,8 +15,6 @@ export class PageListComponent implements OnInit {
   public $todosdone: Todo[];
   public $recenttodo: Todo[];
   public $todoimportant: Todo[];    
-
-  SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' }
   
   constructor() { 
     this.$todos = [];
@@ -71,7 +69,6 @@ export class PageListComponent implements OnInit {
         this.$todosdone.unshift(eventping.object);
         this.$recenttodo.unshift(eventping.object);
       }
-      this.setlocalStorage();
     }
     
     if ('delete' === eventping.lable) {
@@ -88,7 +85,6 @@ export class PageListComponent implements OnInit {
       } else {
         this.$todoimportant.splice(this.$todoimportant.indexOf(eventping.object), 1)
       }
-      this.setlocalStorage();  
     }
 
     if ('important' === eventping.lable) {
@@ -100,36 +96,42 @@ export class PageListComponent implements OnInit {
         this.$todos.splice(this.$todos.indexOf(eventping.object), 1);
         this.$todoimportant.unshift(eventping.object);  
       }
-      this.setlocalStorage();  
     }
 
-    if ('edit' === eventping.lable) {
+    if ('editTodoChange' === eventping.lable) {
         this.$todos.forEach((ToDo: Todo)=> {
           if(eventping.object.id === ToDo.id) {
-            ToDo.lable = eventping.object.lable
-            ToDo.text = eventping.object.text
-            ToDo.important = eventping.object.important
-            if (ToDo.important === true) {
-              console.log("doesnt want to do above")
-              this.$todos.splice(this.$todos.indexOf(eventping.object), 1);
-              this.$todoimportant.push(eventping.object)
-            }
+            this.$todos.splice(this.$todos.indexOf(eventping.object), 1);
+            this.$todoimportant.push(eventping.object);
           }
         })
-
-        this.$todoimportant.forEach((ToDo: Todo)=> {
-          if(ToDo.id === eventping.object.id) {
-            ToDo.lable = eventping.object.lable
-            ToDo.text = eventping.object.text
-            if (ToDo.important === false) {
-              this.$todoimportant.splice(this.$todoimportant.indexOf(eventping.object), 1);
-              this.$todos.push(eventping.object)
-            }
-          }
-        })
-      
-      this.setlocalStorage();  
     }
+    if ('editImportantTodoChange' === eventping.lable) {
+      this.$todoimportant.forEach((ToDo: Todo)=> {
+        if(eventping.object.id === ToDo.id) {
+          this.$todoimportant.splice(this.$todoimportant.indexOf(eventping.object), 1);
+          this.$todos.push(eventping.object);
+        }
+      })
+    }
+    if ('editImportantTodo' === eventping.lable) {
+      this.$todoimportant.forEach((ToDo: Todo)=> {
+        if(eventping.object.id === ToDo.id) {
+          this.$todoimportant.splice(this.$todoimportant.indexOf(eventping.object), 1);
+          this.$todoimportant.push(eventping.object);
+        }
+      })
+    }
+    if ('editTodo' === eventping.lable) {
+      this.$todos.forEach((ToDo: Todo)=> {
+        if(eventping.object.id === ToDo.id) {
+          this.$todos.splice(this.$todos.indexOf(eventping.object), 1);
+          this.$todos.push(eventping.object);
+        }
+      })
+    }
+
+    this.setlocalStorage();  
   }
 
   public create(todo: Todo): void {
