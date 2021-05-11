@@ -49,13 +49,13 @@ export class PageListComponent implements OnInit {
     if (localStorage.getItem('id')===null) {
       this.id = 0;
     } else {
-      this.id = JSON.parse(localStorage.getItem('id'))
+      this.id = JSON.parse(localStorage.getItem('id'));
     }
   }
-
+  
   ngOnInit() {
   }
-
+  
   public update(eventping: EventPing): void {
     
     if ('check' === eventping.lable) {
@@ -92,7 +92,7 @@ export class PageListComponent implements OnInit {
         this.$todoimportant.splice(this.$todoimportant.indexOf(eventping.object), 1)
       }
     }
-
+    
     if ('important' === eventping.lable) {
       console.log('important wurde getriggert')
       if (!eventping.object.important && !eventping.object.done) {
@@ -103,14 +103,14 @@ export class PageListComponent implements OnInit {
         this.$todoimportant.unshift(eventping.object);  
       }
     }
-
+    
     if ('editTodoChange' === eventping.lable) {
-        this.$todos.forEach((ToDo: Todo)=> {
-          if(eventping.object.id === ToDo.id) {
-            this.$todos.splice(this.$todos.indexOf(eventping.object), 1);
-            this.$todoimportant.push(eventping.object);
-          }
-        })
+      this.$todos.forEach((ToDo: Todo)=> {
+        if(eventping.object.id === ToDo.id) {
+          this.$todos.splice(this.$todos.indexOf(eventping.object), 1);
+          this.$todoimportant.push(eventping.object);
+        }
+      })
     }
     if ('editImportantTodoChange' === eventping.lable) {
       this.$todoimportant.forEach((ToDo: Todo)=> {
@@ -136,30 +136,39 @@ export class PageListComponent implements OnInit {
         }
       })
     }
-
+    
     this.setlocalStorage();  
   }
-
+  
   public create(todo: Todo): void {
-   this.id++;
-   if(todo.important != true) {
-      todo.id = this.id;
-      this.$todos.push(todo);
-      console.log("create wurde getriggert"); 
+    if (this.id < 2147483646) {
+      this.id++;
+      if(todo.important != true) {
+        todo.id = this.id;
+        this.$todos.push(todo);
+        console.log("create wurde getriggert"); 
+      } else {
+        todo.id = this.id;
+        this.$todoimportant.push(todo);
+        console.log("create important wurde getriggert"); 
+      }
+      this.setlocalStorage()
     } else {
-      todo.id = this.id;
-      this.$todoimportant.push(todo);
-      console.log("create important wurde getriggert"); 
+      alert("The done Todo's are now deleted, due to storage overflow");
+      this.$todosdone = [];
+      this.$recenttodo = [];
+      this.id = 0;
+      this.setlocalStorage();  
     }
-    this.setlocalStorage()
+    
   }
- 
+  
   public delTodos() {
     this.$todos = [];
     this.$todoimportant = [];
     this.setlocalStorage();  
   }
-
+  
   public setlocalStorage() {
     localStorage.setItem('$todoimportant', JSON.stringify(this.$todoimportant));
     localStorage.setItem('$todos', JSON.stringify(this.$todos));  

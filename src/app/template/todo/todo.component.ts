@@ -47,7 +47,6 @@ export class TodoComponent implements OnInit {
   }
 
   editTodo(): void {
-
     const dialogRef = this.dialog.open(TodoDialog, {
       width: '230px',
       data: { lable: this.toDo$.lable, text: this.toDo$.text, id: this.toDo$.id, important: this.toDo$.important },
