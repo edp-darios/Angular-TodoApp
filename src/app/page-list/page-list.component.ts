@@ -11,6 +11,7 @@ export class PageListComponent implements OnInit {
   
   public createTodo = true;
   public donetodosbool = true;
+  public id = 0;
   public $todos: Todo[];
   public $todosdone: Todo[];
   public $recenttodo: Todo[];
@@ -44,6 +45,11 @@ export class PageListComponent implements OnInit {
       this.$recenttodo = [];
     } else {
       this.$recenttodo = JSON.parse(localStorage.getItem('$recenttodo'))
+    }
+    if (localStorage.getItem('id')===null) {
+      this.id = 0;
+    } else {
+      this.id = JSON.parse(localStorage.getItem('id'))
     }
   }
 
@@ -117,16 +123,16 @@ export class PageListComponent implements OnInit {
     if ('editImportantTodo' === eventping.lable) {
       this.$todoimportant.forEach((ToDo: Todo)=> {
         if(eventping.object.id === ToDo.id) {
-          this.$todoimportant.splice(this.$todoimportant.indexOf(eventping.object), 1);
-          this.$todoimportant.push(eventping.object);
+          ToDo.lable = eventping.object.lable
+          ToDo.text = eventping.object.text
         }
       })
     }
     if ('editTodo' === eventping.lable) {
       this.$todos.forEach((ToDo: Todo)=> {
         if(eventping.object.id === ToDo.id) {
-          this.$todos.splice(this.$todos.indexOf(eventping.object), 1);
-          this.$todos.push(eventping.object);
+          ToDo.lable = eventping.object.lable
+          ToDo.text = eventping.object.text
         }
       })
     }
@@ -135,12 +141,13 @@ export class PageListComponent implements OnInit {
   }
 
   public create(todo: Todo): void {
+   this.id++;
    if(todo.important != true) {
-      todo.id = this.$todos.length;
+      todo.id = this.id;
       this.$todos.push(todo);
       console.log("create wurde getriggert"); 
     } else {
-      todo.id = this.$todos.length + 1;
+      todo.id = this.id;
       this.$todoimportant.push(todo);
       console.log("create important wurde getriggert"); 
     }
@@ -158,5 +165,6 @@ export class PageListComponent implements OnInit {
     localStorage.setItem('$todos', JSON.stringify(this.$todos));  
     localStorage.setItem('$todosdone', JSON.stringify(this.$todosdone)); 
     localStorage.setItem('$recenttodo', JSON.stringify(this.$recenttodo)); 
+    localStorage.setItem('id', JSON.stringify(this.id)); 
   }
 }
