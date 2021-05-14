@@ -2,10 +2,10 @@
 
     <div class="todoCon">
         <br>
-        <h4><b>To-Do </b><span>( {{ $todos.length + $todoimportant.length }} ) </span><span class="delete" (click)="delTodos()">delete</span></h4>
+        <h4><b>To-Do </b><span>( {{ $todos.length + $todoimportant.length }} ) </span><span class="delete" (click)="delTodos()">{{'delete' | translate}}</span></h4>
         <app-todo [toDo$]="Todo" (ping)="update($event)" *ngFor="let Todo of $todoimportant"></app-todo>
         <app-todo [toDo$]="Todo" (ping)="update($event)" *ngFor="let Todo of $todos"></app-todo>
-        <h4 (click)="donetodosbool=!donetodosbool"><b *ngIf="donetodosbool">Recently done</b><b *ngIf="!donetodosbool">Done</b></h4>
+        <h4 (click)="donetodosbool=!donetodosbool"><b *ngIf="donetodosbool">{{'rdone' | translate}}</b><b *ngIf="!donetodosbool">{{'done' | translate}}</b></h4>
         <div *ngIf="donetodosbool">
             <app-todo [toDo$]="Todo" (ping)="update($event)" *ngFor="let Todo of $recenttodo"></app-todo>
         </div>

@@ -3,10 +3,13 @@ h4 {
     font-weight: bolder;
     cursor: pointer;
 }
+
 .delete {
     float: right;
+    font-size: 10px;
 }
-.conatiner{
+
+.conatiner {
     margin: 0 10px;
     max-width: 1010px;
 }

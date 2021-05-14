@@ -42,6 +42,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { ArchivComponent } from 'src/app/archiv/archiv.component';
 import { CreateTodoComponent } from 'src/app/template/createTodo/createTodo.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
    declarations: [
@@ -96,11 +99,21 @@ import { CreateTodoComponent } from 'src/app/template/createTodo/createTodo.comp
       MatPaginatorModule,
       MatButtonModule,
       MatCheckboxModule,
-      FormsModule
+      FormsModule,
+      TranslateModule.forRoot({
+         loader: {
+           provide: TranslateLoader,
+           useFactory: httpTranslateLoader,
+           deps: [HttpClient]
+         }
+       })
    ],
    providers: [],
-   bootstrap: [
-      AppComponent
-   ]
+   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+// AOT compilation support
+export function httpTranslateLoader(http: HttpClient) {
+   return new TranslateHttpLoader(http);
+ }

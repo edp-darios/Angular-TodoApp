@@ -1,9 +1,13 @@
 <mat-toolbar>
     <div class="todo">
-        <a href="#" routerLink="/">DO<br><b>STUFF</b><br>NOW</a>
+        <a href="#" routerLink="/">{{'title1' | translate}}<br><b>{{'title2' | translate}}</b><br>{{'title3' | translate}}</a>
     </div>
-    <div class="spacer"></div>
+    <form action="">
+        <select class="custom-select" #selectedLang (change)="switchLang(selectedLang.value)">
+            <option *ngFor="let language of translate.getLangs()" [value]="language" [selected]="language === translate.currentLang">{{ language }}</option>
+        </select>
+    </form>
     <div class="archiv">
-        <a href="#" routerLink="/archiv" class="todo-text"><img src="assets/img/archive_icon.png" alt="archive_icon" class="archive_img"></a>
+        <a href="#" routerLink="/archiv" class="archive-logo"><img src="assets/img/archive_icon.png" alt="archive_icon" class="archive_img"></a>
     </div>
 </mat-toolbar>
