@@ -107,16 +107,23 @@ export class PageListComponent implements OnInit {
     if ('editTodoChange' === eventping.lable) {
       this.$todos.forEach((ToDo: Todo)=> {
         if(eventping.object.id === ToDo.id) {
-          this.$todos.splice(this.$todos.indexOf(eventping.object), 1);
-          this.$todoimportant.push(eventping.object);
+          ToDo.lable = eventping.object.lable;
+          ToDo.text = eventping.object.text;
+          ToDo.important = eventping.object.important;
+          this.$todoimportant.push(ToDo);
+          this.$todos.splice(this.$todos.indexOf(ToDo), 1);
         }
-      })
+      });
+      
     }
     if ('editImportantTodoChange' === eventping.lable) {
       this.$todoimportant.forEach((ToDo: Todo)=> {
         if(eventping.object.id === ToDo.id) {
-          this.$todoimportant.splice(this.$todoimportant.indexOf(eventping.object), 1);
-          this.$todos.push(eventping.object);
+          ToDo.lable = eventping.object.lable;
+          ToDo.text = eventping.object.text;
+          ToDo.important = eventping.object.important;
+          this.$todos.push(ToDo);
+          this.$todoimportant.splice(this.$todoimportant.indexOf(ToDo), 1);
         }
       })
     }
