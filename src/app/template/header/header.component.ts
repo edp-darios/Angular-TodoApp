@@ -9,7 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class HeaderComponent implements OnInit {
 
   constructor(public translate: TranslateService) {
-    translate.addLangs(['en', 'de']);
+    translate.addLangs(['en', 'de', 'fr']);
     var currentLanguage = JSON.parse(localStorage.getItem('language'));
     translate.setDefaultLang(currentLanguage);
     translate.currentLang = currentLanguage;
