@@ -53,8 +53,7 @@ export class PageListComponent implements OnInit {
     }
   }
   
-  ngOnInit() {
-  }
+  ngOnInit() {}
   
   public update(eventping: EventPing): void {
     

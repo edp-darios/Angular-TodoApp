@@ -8,13 +8,16 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor( public translate: TranslateService) {
+  constructor(public translate: TranslateService) {
     translate.addLangs(['en', 'de']);
-    translate.setDefaultLang('en');
+    var currentLanguage = JSON.parse(localStorage.getItem('language'));
+    translate.setDefaultLang(currentLanguage);
+    translate.currentLang = currentLanguage;
   }
 
   switchLang(lang: string) {
     this.translate.use(lang);
+    localStorage.setItem('language', JSON.stringify(lang)); 
   }
 
   ngOnInit(): void {
