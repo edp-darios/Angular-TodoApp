@@ -12,4 +12,5 @@ h4 {
 .conatiner {
     margin: 0 10px;
     max-width: 1010px;
+    margin: 0 auto;
 }
