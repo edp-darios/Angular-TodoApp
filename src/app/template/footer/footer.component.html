@@ -1,0 +1,8 @@
+<div>
+    <form action="">
+        <select class="custom-select" #selectedLang (change)="switchLang(selectedLang.value)">
+            <option *ngFor="let language of translate.getLangs()" [value]="language" [selected]="language === translate.currentLang">{{ language }}</option>
+        </select>
+    </form>
+    <img class="icon" src="assets/img/addTodo_icon.png" alt="archive_icon" (click)="openDialog()">
+</div>

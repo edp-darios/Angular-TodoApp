@@ -41,7 +41,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { ArchivComponent } from 'src/app/archiv/archiv.component';
-import { CreateTodoComponent } from 'src/app/template/createTodo/createTodo.component';
+import { FooterComponent } from 'src/app/template/footer/footer.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
@@ -54,7 +54,7 @@ import { HttpClient } from '@angular/common/http';
       TodoComponent,
       ArchivComponent,
       TodoDialog,
-      CreateTodoComponent,
+      FooterComponent,
    ],
    entryComponents: [
       TodoDialog

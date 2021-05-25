@@ -23,25 +23,23 @@ span {
     justify-content: space-between;
     margin: 0 10px 20px 10px;
     max-width: 1000px;
+    margin: 0 auto;
 }
 
-.createCon {
-    width: 100%;
-    margin: 0;
-}
-
-.todoCon {
+.todoCon,
+.donetodoCon {
     width: 100%;
     margin: 0;
     margin-bottom: 60px;
 }
 
 @media only screen and (min-width: 967px) {
-    .todoCon {
+    .todoCon,
+    .donetodoCon {
         width: 49%;
     }
-    .createCon {
-        width: 49%;
+    .donetodoCon {
+        margin-top: 21px;
     }
 }
 
