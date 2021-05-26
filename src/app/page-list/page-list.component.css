@@ -18,9 +18,6 @@ span {
 }
 
 .conatiner {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
     margin: 0 10px 20px 10px;
     max-width: 1000px;
     margin: 0 auto;
@@ -29,17 +26,19 @@ span {
 .todoCon,
 .donetodoCon {
     width: 100%;
-    margin: 0;
-    margin-bottom: 60px;
+    margin: 0 22px;
 }
 
 @media only screen and (min-width: 967px) {
     .todoCon,
     .donetodoCon {
-        width: 49%;
+        width: 50%;
     }
     .donetodoCon {
         margin-top: 21px;
+    }
+    .conatiner {
+        display: flex;
     }
 }
 
